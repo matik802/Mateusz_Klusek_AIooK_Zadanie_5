@@ -1,0 +1,17 @@
+<form [formGroup]="form4edit" (ngSubmit)='doEditStudent()'>
+Imię: <input type="text" formControlName="imie">
+Nazwisko: <input type="text" formControlName="nazwisko">
+Indeks: <input type="number" formControlName="nrIndeksu">
+Data urodzenia: <input type="date" formControlName="dataUrodzenia">
+<!-- <div class="error" *ngIf="formModel.controls['dataUrodzenia'].errors?.['required']">
+Data jest obowiązkowa
+</div>
+<div class="error" *ngIf="formModel.controls['dataUrodzenia'].errors?.['dateForAdult']">
+Student musi być pełnoletni
+</div> -->
+<input [disabled]="!form4edit.valid" type="submit" value="Send">
+</form>
+
+<p>{{form4edit.valid}}|json</p>
+
+<!-- <p>{{form4edit.value}}</p> -->

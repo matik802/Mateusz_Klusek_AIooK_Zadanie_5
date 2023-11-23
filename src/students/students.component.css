@@ -1,0 +1,16 @@
+.title{
+  color:rgb(0, 106, 255);
+  font-weight: bold;
+  font-size: xx-large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+ol{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: larger;
+  background-color: antiquewhite;
+}
+
+li{
+  border-style: ridge;
+}

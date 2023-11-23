@@ -1,0 +1,45 @@
+<div [class.oddRow]="isOdd" [class.evenRow]="!isOdd">
+  {{ title }} {{ studentForPrint.Name | titlecase }}
+  {{ studentForPrint.Surname | titlecase }}
+  {{ 'index:' | uppercase }}
+  {{ studentForPrint.Index_nr | number: '6.0-0' }}
+  <span *ngIf="studentForPrint.grupa">
+    {{ studentForPrint.grupa | lowercase }}</span
+  >
+  <span>Index z filtru:  {{studentForPrint.Index_nr|showIndex}}</span>
+  <div appShowDate [inputDate]="formatDate()" title="Data urodzenia: " sep="-" >
+    {{ 'data urodzenia:' | uppercase }}
+    {{ studentForPrint.dataUrodzenia | date: 'shortDate' }}
+  </div>
+
+  <div *ngIf="studentForPrint.adres">
+    {{ 'adres:' | uppercase }} {{ studentForPrint.adres | titlecase }}
+  </div>
+  <div *ngIf="studentForPrint.stypendium">
+    {{ 'stypendium:' | uppercase }}
+    {{ studentForPrint.stypendium | currency: 'PLN':'zł' }}
+  </div>
+  <p *ngIf="studentForPrint.marks.length > 0">Oceny:</p>
+  <ul>
+    <li
+      *ngFor="let ocena of studentForPrint.marks; index as markInd"
+      (click)="clicked = markInd"
+    >
+      <span *ngIf="clicked!=markInd">{{ ocena | number: '1.1-1' }}</span>
+      <span *ngIf="clicked==markInd"><app-edit-mark [mark4edit]="ocena" (changeMarkInParentAdd)="editMark($event)"></app-edit-mark></span>
+    </li>
+    <li>
+      <app-add-mark (addMarkInParentAdd)="addMark($event)"></app-add-mark>
+    </li>
+  </ul>
+</div>
+
+<!-- <p>{{1.123 | number}}</p> -->
+
+<!-- 
+<div *ngIf="clicked!=-1">
+<input type="text" [(ngModel)]="studentForEdit.Name"/>
+<input type="text" [(ngModel)]="studentForEdit.Surname"/>
+<input type="number" [(ngModel)]="studentForEdit.Index_nr"/>
+<span (click)="hide()">hide</span>
+</div> -->

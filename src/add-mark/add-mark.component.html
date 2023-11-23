@@ -1,0 +1,22 @@
+<!-- <span><input type="number"  min="2" max="5" step="0.5" [(ngModel)]="newMark"/><button (click)="add()">Dodaj ocenę</button></span> -->
+<span
+  ><input
+    id="newMarkInput"
+    type="number"
+    min="2"
+    max="5"
+    step="0.5"
+    [formControl]="newMarkInput"
+  />
+  <div *ngIf="newMarkInput.errors?.['required']">
+  Ocena jest wymagana
+</div>
+<div *ngIf="newMarkInput.errors?.['min']">
+Wartość min to {{newMarkInput.errors?.['min']['min']}}
+</div>
+  <button (click)="add()">Dodaj ocenę</button></span
+>
+
+<!-- <p>Value: {{ newMarkInput.value }}</p>
+<p>Value: {{ newMarkInput.valid }}</p> -->
+<!-- <p>Errors: {{ newMarkInput.errors | json}}</p> -->

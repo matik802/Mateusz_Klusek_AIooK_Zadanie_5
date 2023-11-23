@@ -1,0 +1,40 @@
+<p [ngClass]="'title'">Lista studentów:</p>
+Wyszukaj: <input type="text" [(ngModel)]="searchValue" />
+<label for="cars">Sort:</label>
+<select [(ngModel)]="sortValue">
+  <option [ngValue]="'asc'" type="text">Ascending</option>
+  <option [ngValue]="'dsc'" type="text">Descending</option>
+</select>
+<ol>
+  <li
+    *ngFor="
+      let student of students | sortStudents: sortValue | searchStudents: searchValue:'surname';
+      odd as isOdd;
+      even as isEven;
+      index as i
+    "
+  >
+    <button (click)="ktoryStudentDoEdycji = i">Edycja</button>
+    <span *ngIf="ktoryStudentDoEdycji == i">
+     
+    
+ 
+      <app-edit-student
+        [student4edit]="student"
+        [ktoryStudent]="ktoryStudentDoEdycji"
+        (doEditInParent)="doEditStudent($event)"
+      ></app-edit-student
+    ></span>
+    <span *ngIf="ktoryStudentDoEdycji != i">
+    <a [routerLink]="['/edit-student', i]">Edycja w oddzielnym widoku</a>
+      <print-student
+        [isOdd]="isOdd"
+        [studentForPrint]="student"
+        title="{{ student.Name.endsWith('a') ? 'Pani' : 'Pan' }}"
+        [which]="i"
+        (addMarkInParent)="addMark($event)"
+        (editMarkInParent)="doEditMark($event)"
+      ></print-student
+    ></span>
+  </li>
+</ol>
